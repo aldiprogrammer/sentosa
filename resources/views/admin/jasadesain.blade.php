@@ -12,9 +12,7 @@
                 <div class="card-body">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
                         <h2 class="card-title">{{ $title }}</h2>
-
                         <div class="flex gap-2">
-
                             <button class="btn btn-success" onclick="my_modal_3.showModal()"><i class="fas fa-plus"></i>
                                 Tambah
                                 data</button>
@@ -24,51 +22,30 @@
                                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                     </form>
                                     <h3 class="text-lg font-bold">Tambah {{ $title }}</h3>
-                                    <form method="post" action="{{ route('admin.customer.store') }}"
+                                    <form method="post" action="{{ route('admin.jasadesain.store') }}"
                                         enctype="multipart/form-data">
                                         @csrf
 
                                         <label class="form-control w-full mt-2">
                                             <div class="label">
-                                                <span class="label-text">Nama</span>
+                                                <span class="label-text">Nama Jasa Desain</span>
                                             </div>
-                                            <input type="text" name="nama" placeholder=""
+                                            <input type="text" name="jasa" placeholder=""
                                                 class="input input-bordered input-success w-full" required />
                                         </label>
 
                                         <label class="form-control w-full mt-2">
                                             <div class="label">
-                                                <span class="label-text">No Whatsapp</span>
+                                                <span class="label-text">Harga</span>
                                             </div>
-                                            <input type="text" name="nohp" placeholder=""
+                                            <input type="number" name="harga" placeholder=""
                                                 class="input input-bordered input-success w-full" required />
                                         </label>
 
-                                        <label class="form-control w-full mt-2">
-                                            <div class="label">
-                                                <span class="label-text">Alamat</span>
-                                            </div>
-                                            <textarea name="alamat" id="" class="input input-bordered input-success" cols="30" rows="10"
-                                                required></textarea>
-                                        </label>
-
-                                        <label class="form-control w-full mt-2">
-                                            <label class="form-control w-full mt-2">
-                                                <div class="label">
-                                                    <span class="label-text">Jenis Kelamin</span>
-                                                </div>
-                                                <select name="jk" id=""
-                                                    class="input input bordered input-success  w-full " required>
-                                                    <option value="">-- Pilih Jenis Kelamin --</option>
-                                                    <option>Laki-laki</option>
-                                                    <option>Perempuan</option>
-                                                </select>
-                                            </label>
-
-                                            <div class="mt-4">
-                                                <button type="submit" class="btn btn-success">Tambah data</button>
-                                                <a href="" class="btn btn-danger">Keluar</a>
-                                            </div>
+                                        <div class="mt-4">
+                                            <button type="submit" class="btn btn-success">Tambah data</button>
+                                            <a href="" class="btn btn-danger">Keluar</a>
+                                        </div>
 
                                     </form>
                                 </div>
@@ -82,22 +59,18 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
-                                    <th>No Wa</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Alamat</th>
+                                    <th>Nama Jasa</th>
+                                    <th>Harga</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($customer as $i => $item)
+                                @foreach ($jasa as $i => $item)
                                     <tr>
                                         <td>{{ $i + 1 }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->nohp }}</td>
-                                        <td>{{ $item->jenis_kelamin }}</td>
-                                        <td>{{ $item->alamat }}</td>
+                                        <td>{{ $item->nama_jasa }}</td>
+                                        <td>{{ number_format($item->harga) }}</td>
                                         <td>
                                             <div class="flex gap-2">
                                                 <button class="btn btn-primary btn-sm"
@@ -105,7 +78,7 @@
                                                     Edit</button>
 
                                                 <form id="delete-user-{{ $item->id }}"
-                                                    action="{{ route('admin.customer.delete', $item->id) }}"
+                                                    action="{{ route('admin.jasadesain.delete', $item->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -130,57 +103,35 @@
                                                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                             </form>
                                             <h3 class="text-lg font-bold">Edit {{ $title }}</h3>
-                                            <form method="post" action="{{ route('admin.customer.update', $item->id) }}"
+                                            <form method="post" action="{{ route('admin.jasadesain.update', $item->id) }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 @method('put')
 
                                                 <label class="form-control w-full mt-2">
                                                     <div class="label">
-                                                        <span class="label-text">Nama</span>
+                                                        <span class="label-text">Nama Jasa Desain</span>
                                                     </div>
-                                                    <input type="text" name="nama" placeholder=""
+                                                    <input type="text" name="jasa" placeholder=""
                                                         class="input input-bordered input-success w-full"
-                                                        value="{{ $item->nama }}" required />
+                                                        value="{{ $item->nama_jasa }}" required />
                                                 </label>
 
                                                 <label class="form-control w-full mt-2">
                                                     <div class="label">
-                                                        <span class="label-text">No Whatsapp</span>
+                                                        <span class="label-text">Harga</span>
                                                     </div>
-                                                    <input type="text" name="nohp" placeholder=""
+                                                    <input type="text" name="harga" placeholder=""
                                                         class="input input-bordered input-success w-full"
-                                                        value="{{ $item->nohp }}" required />
+                                                        value="{{ $item->harga }}" required />
                                                 </label>
 
-                                                <label class="form-control w-full mt-2">
-                                                    <div class="label">
-                                                        <span class="label-text">Alamat</span>
-                                                    </div>
-                                                    <textarea name="alamat" id="" class="input input-bordered input-success" cols="30" rows="10"
-                                                        required>{{ $item->alamat }}</textarea>
-                                                </label>
 
-                                                <label class="form-control w-full mt-2">
-                                                    <label class="form-control w-full mt-2">
-                                                        <div class="label">
-                                                            <span class="label-text">Jenis Kelamin</span>
-                                                        </div>
-                                                        <select name="jk" id=""
-                                                            class="input input bordered input-success  w-full " required>
-                                                            <option>{{ $item->jenis_kelamin }}</option>
-                                                            <option value="">-- Pilih Jenis Kelamin --
-                                                            </option>
-                                                            <option>Laki-laki</option>
-                                                            <option>Perempuan</option>
-                                                        </select>
-                                                    </label>
-
-                                                    <div class="mt-4">
-                                                        <button type="submit" class="btn btn-success">Edit
-                                                        </button>
-                                                        <a href="" class="btn btn-danger">Keluar</a>
-                                                    </div>
+                                                <div class="mt-4">
+                                                    <button type="submit" class="btn btn-success">Edit
+                                                    </button>
+                                                    <a href="" class="btn btn-danger">Keluar</a>
+                                                </div>
 
                                             </form>
                                         </div>

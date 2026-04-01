@@ -24,51 +24,53 @@
                                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                     </form>
                                     <h3 class="text-lg font-bold">Tambah {{ $title }}</h3>
-                                    <form method="post" action="{{ route('admin.customer.store') }}"
+                                    <form method="post" action="{{ route('admin.bahan.store') }}"
                                         enctype="multipart/form-data">
                                         @csrf
 
                                         <label class="form-control w-full mt-2">
                                             <div class="label">
-                                                <span class="label-text">Nama</span>
+                                                <span class="label-text">Tanggal Masuk</span>
                                             </div>
-                                            <input type="text" name="nama" placeholder=""
+                                            <input type="date" name="tgl_masuk" placeholder=""
                                                 class="input input-bordered input-success w-full" required />
                                         </label>
 
                                         <label class="form-control w-full mt-2">
                                             <div class="label">
-                                                <span class="label-text">No Whatsapp</span>
+                                                <span class="label-text">Nama Bahan</span>
                                             </div>
-                                            <input type="text" name="nohp" placeholder=""
+                                            <input type="text" name="nama_bahan" placeholder=""
                                                 class="input input-bordered input-success w-full" required />
                                         </label>
 
                                         <label class="form-control w-full mt-2">
                                             <div class="label">
-                                                <span class="label-text">Alamat</span>
+                                                <span class="label-text">Jumlah Bahan</span>
                                             </div>
-                                            <textarea name="alamat" id="" class="input input-bordered input-success" cols="30" rows="10"
-                                                required></textarea>
+                                            <input type="number" name="jml_bahan" placeholder=""
+                                                class="input input-bordered input-success w-full" required />
                                         </label>
 
                                         <label class="form-control w-full mt-2">
-                                            <label class="form-control w-full mt-2">
-                                                <div class="label">
-                                                    <span class="label-text">Jenis Kelamin</span>
-                                                </div>
-                                                <select name="jk" id=""
-                                                    class="input input bordered input-success  w-full " required>
-                                                    <option value="">-- Pilih Jenis Kelamin --</option>
-                                                    <option>Laki-laki</option>
-                                                    <option>Perempuan</option>
-                                                </select>
-                                            </label>
-
-                                            <div class="mt-4">
-                                                <button type="submit" class="btn btn-success">Tambah data</button>
-                                                <a href="" class="btn btn-danger">Keluar</a>
+                                            <div class="label">
+                                                <span class="label-text">Jenis Bahan</span>
                                             </div>
+                                            <select name="jenis_bahan" id=""
+                                                class="input input-bordered input-success" required>
+                                                <option value="">-- Pilih Jenis Bahan --</option>
+                                                @foreach ($jenis as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->jenis_bahan }}</option>
+                                                @endforeach
+                                            </select>
+                                        </label>
+
+
+
+                                        <div class="mt-4">
+                                            <button type="submit" class="btn btn-success">Tambah data</button>
+                                            <a href="" class="btn btn-danger">Keluar</a>
+                                        </div>
 
                                     </form>
                                 </div>
@@ -82,22 +84,22 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
-                                    <th>No Wa</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Alamat</th>
+                                    <th>Tanggal Masuk</th>
+                                    <th>Nama Bahan</th>
+                                    <th>Jumlah Stok</th>
+                                    <th>Jenis Bahan</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($customer as $i => $item)
+                                @foreach ($bahan as $i => $item)
                                     <tr>
                                         <td>{{ $i + 1 }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->nohp }}</td>
-                                        <td>{{ $item->jenis_kelamin }}</td>
-                                        <td>{{ $item->alamat }}</td>
+                                        <td>{{ $item->tgl_masuk }}</td>
+                                        <td>{{ $item->nama_bahan }}</td>
+                                        <td>{{ $item->jumlah_bahan }}</td>
+                                        <td>{{ $item->jenisbahan->jenis_bahan }}</td>
                                         <td>
                                             <div class="flex gap-2">
                                                 <button class="btn btn-primary btn-sm"
@@ -105,8 +107,7 @@
                                                     Edit</button>
 
                                                 <form id="delete-user-{{ $item->id }}"
-                                                    action="{{ route('admin.customer.delete', $item->id) }}"
-                                                    method="POST">
+                                                    action="{{ route('admin.bahan.delete', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
 
@@ -130,57 +131,60 @@
                                                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                             </form>
                                             <h3 class="text-lg font-bold">Edit {{ $title }}</h3>
-                                            <form method="post" action="{{ route('admin.customer.update', $item->id) }}"
+                                            <form method="post" action="{{ route('admin.bahan.update', $item->id) }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 @method('put')
 
                                                 <label class="form-control w-full mt-2">
                                                     <div class="label">
-                                                        <span class="label-text">Nama</span>
+                                                        <span class="label-text">Tanggal Masuk</span>
                                                     </div>
-                                                    <input type="text" name="nama" placeholder=""
+                                                    <input type="date" name="tgl_masuk" placeholder=""
                                                         class="input input-bordered input-success w-full"
-                                                        value="{{ $item->nama }}" required />
+                                                        value="{{ $item->tgl_masuk }}" required />
                                                 </label>
 
                                                 <label class="form-control w-full mt-2">
                                                     <div class="label">
-                                                        <span class="label-text">No Whatsapp</span>
+                                                        <span class="label-text">Nama Bahan</span>
                                                     </div>
-                                                    <input type="text" name="nohp" placeholder=""
+                                                    <input type="text" name="nama_bahan" placeholder=""
                                                         class="input input-bordered input-success w-full"
-                                                        value="{{ $item->nohp }}" required />
+                                                        value="{{ $item->nama_bahan }}" required />
                                                 </label>
 
                                                 <label class="form-control w-full mt-2">
                                                     <div class="label">
-                                                        <span class="label-text">Alamat</span>
+                                                        <span class="label-text">Jumlah Bahan</span>
                                                     </div>
-                                                    <textarea name="alamat" id="" class="input input-bordered input-success" cols="30" rows="10"
-                                                        required>{{ $item->alamat }}</textarea>
+                                                    <input type="number" name="jml_bahan" placeholder=""
+                                                        class="input input-bordered input-success w-full"
+                                                        value="{{ $item->jumlah_bahan }}" required />
                                                 </label>
 
                                                 <label class="form-control w-full mt-2">
-                                                    <label class="form-control w-full mt-2">
-                                                        <div class="label">
-                                                            <span class="label-text">Jenis Kelamin</span>
-                                                        </div>
-                                                        <select name="jk" id=""
-                                                            class="input input bordered input-success  w-full " required>
-                                                            <option>{{ $item->jenis_kelamin }}</option>
-                                                            <option value="">-- Pilih Jenis Kelamin --
+                                                    <div class="label">
+                                                        <span class="label-text">Jenis Bahan</span>
+                                                    </div>
+                                                    <select name="jenis_bahan" id=""
+                                                        class="input input-bordered input-success" required>
+                                                        <option value="{{ $item->id_kategori_bahan }}">
+                                                            {{ $item->jenisbahan->jenis_bahan }}</option>
+                                                        @foreach ($jenis as $a)
+                                                            <option value="{{ $a->id }}">{{ $a->jenis_bahan }}
                                                             </option>
-                                                            <option>Laki-laki</option>
-                                                            <option>Perempuan</option>
-                                                        </select>
-                                                    </label>
+                                                        @endforeach
+                                                    </select>
+                                                </label>
 
-                                                    <div class="mt-4">
-                                                        <button type="submit" class="btn btn-success">Edit
-                                                        </button>
-                                                        <a href="" class="btn btn-danger">Keluar</a>
-                                                    </div>
+
+
+                                                <div class="mt-4">
+                                                    <button type="submit" class="btn btn-success">Edit
+                                                    </button>
+                                                    <a href="" class="btn btn-danger">Keluar</a>
+                                                </div>
 
                                             </form>
                                         </div>

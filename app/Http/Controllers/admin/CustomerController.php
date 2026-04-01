@@ -21,6 +21,7 @@ class CustomerController extends Controller
         $cs->nama = $request->nama;
         $cs->jenis_kelamin = $request->jk;
         $cs->nohp = $request->nohp;
+        $cs->alamat = $request->alamat;
         $cs->save();
         return redirect()->back()->with('success', 'Data berhasil ditambah');
     }
@@ -32,6 +33,7 @@ class CustomerController extends Controller
         $cs->nama = $request->nama;
         $cs->jenis_kelamin = $request->jk;
         $cs->nohp = $request->nohp;
+         $cs->alamat = $request->alamat;
         $cs->update();
         return redirect()->back()->with('success', 'Data berhasil diubah');
     }

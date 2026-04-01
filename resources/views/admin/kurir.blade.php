@@ -24,7 +24,7 @@
                                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                     </form>
                                     <h3 class="text-lg font-bold">Tambah {{ $title }}</h3>
-                                    <form method="post" action="{{ route('admin.customer.store') }}"
+                                    <form method="post" action="{{ route('admin.kurir.store') }}"
                                         enctype="multipart/form-data">
                                         @csrf
 
@@ -55,13 +55,13 @@
                                         <label class="form-control w-full mt-2">
                                             <label class="form-control w-full mt-2">
                                                 <div class="label">
-                                                    <span class="label-text">Jenis Kelamin</span>
+                                                    <span class="label-text">Status</span>
                                                 </div>
-                                                <select name="jk" id=""
+                                                <select name="status" id=""
                                                     class="input input bordered input-success  w-full " required>
-                                                    <option value="">-- Pilih Jenis Kelamin --</option>
-                                                    <option>Laki-laki</option>
-                                                    <option>Perempuan</option>
+                                                    <option value="">-- Pilih Status --</option>
+                                                    <option>Aktif</option>
+                                                    <option>Tidak Aktif</option>
                                                 </select>
                                             </label>
 
@@ -84,20 +84,27 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>No Wa</th>
-                                    <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
+                                    <th>Status</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($customer as $i => $item)
+                                @foreach ($kurir as $i => $item)
                                     <tr>
                                         <td>{{ $i + 1 }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->nohp }}</td>
-                                        <td>{{ $item->jenis_kelamin }}</td>
                                         <td>{{ $item->alamat }}</td>
+                                        <td>
+                                            @if ($item->status == 'Aktif')
+                                                <span class="badge badge-success">{{ $item->status }}</span>
+                                            @else
+                                                <span class="badge badge-error">{{ $item->status }}</span>
+                                            @endif
+
+                                        </td>
                                         <td>
                                             <div class="flex gap-2">
                                                 <button class="btn btn-primary btn-sm"
@@ -105,11 +112,9 @@
                                                     Edit</button>
 
                                                 <form id="delete-user-{{ $item->id }}"
-                                                    action="{{ route('admin.customer.delete', $item->id) }}"
-                                                    method="POST">
+                                                    action="{{ route('admin.kurir.delete', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-
                                                     <button type="button"
                                                         onclick="confirmDelete('delete-user-{{ $item->id }}')"
                                                         class="btn btn-error btn-sm text-white">
@@ -130,7 +135,7 @@
                                                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                             </form>
                                             <h3 class="text-lg font-bold">Edit {{ $title }}</h3>
-                                            <form method="post" action="{{ route('admin.customer.update', $item->id) }}"
+                                            <form method="post" action="{{ route('admin.kurir.update', $item->id) }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 @method('put')
@@ -164,15 +169,13 @@
                                                 <label class="form-control w-full mt-2">
                                                     <label class="form-control w-full mt-2">
                                                         <div class="label">
-                                                            <span class="label-text">Jenis Kelamin</span>
+                                                            <span class="label-text">Status</span>
                                                         </div>
-                                                        <select name="jk" id=""
+                                                        <select name="status" id=""
                                                             class="input input bordered input-success  w-full " required>
-                                                            <option>{{ $item->jenis_kelamin }}</option>
-                                                            <option value="">-- Pilih Jenis Kelamin --
-                                                            </option>
-                                                            <option>Laki-laki</option>
-                                                            <option>Perempuan</option>
+                                                            <option>{{ $item->status }}</option>
+                                                            <option>Aktif</option>
+                                                            <option>Tidak Aktif</option>
                                                         </select>
                                                     </label>
 

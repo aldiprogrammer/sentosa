@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel DaisyUI v5</title>
+    <title>{{ $title }}</title>
 
     <!-- Tailwind + DaisyUI -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet">
@@ -140,7 +140,87 @@
         </div>
     </div>
 
+    <script>
+        new DataTable('#myTable', {});
+    </script>
+
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+                timer: 2000,
+                showConfirmButton: false
+            })
+        @endif
+
+        @if (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '{{ session('error') }}'
+            })
+        @endif
+
+        @if (session('warning'))
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: '{{ session('warning') }}'
+            })
+        @endif
+    </script>
+
+    <script>
+        function confirmDelete(formId) {
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal',
+                customClass: {
+                    confirmButton: 'btn btn-error text-white',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: true
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    document.getElementById(formId).submit();
+                }
+
+            });
+
+        };
+
+        function confirmUpdate(formId) {
+
+            Swal.fire({
+                title: 'Yakin ingin update status?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, update!',
+                cancelButtonText: 'Batal',
+                customClass: {
+                    confirmButton: 'btn btn-error text-white',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: true
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    document.getElementById(formId).submit();
+                }
+
+            });
+
+        }
+    </script>
+
+
 </body>
 
 </html>
-```

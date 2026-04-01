@@ -24,7 +24,7 @@
                                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                     </form>
                                     <h3 class="text-lg font-bold">Tambah {{ $title }}</h3>
-                                    <form method="post" action="{{ route('admin.customer.store') }}"
+                                    <form method="post" action="{{ route('admin.pegawai.store') }}"
                                         enctype="multipart/form-data">
                                         @csrf
 
@@ -55,13 +55,14 @@
                                         <label class="form-control w-full mt-2">
                                             <label class="form-control w-full mt-2">
                                                 <div class="label">
-                                                    <span class="label-text">Jenis Kelamin</span>
+                                                    <span class="label-text">Jabatan</span>
                                                 </div>
-                                                <select name="jk" id=""
+                                                <select name="jabatan" id=""
                                                     class="input input bordered input-success  w-full " required>
-                                                    <option value="">-- Pilih Jenis Kelamin --</option>
-                                                    <option>Laki-laki</option>
-                                                    <option>Perempuan</option>
+                                                    <option value="">-- Pilih Jabatan --</option>
+                                                    @foreach ($jabatan as $item)
+                                                        <option>{{ $item->jabatan }}</option>
+                                                    @endforeach
                                                 </select>
                                             </label>
 
@@ -84,19 +85,19 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>No Wa</th>
-                                    <th>Jenis Kelamin</th>
+                                    <th>Jabatan</th>
                                     <th>Alamat</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($customer as $i => $item)
+                                @foreach ($pegawai as $i => $item)
                                     <tr>
                                         <td>{{ $i + 1 }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->nohp }}</td>
-                                        <td>{{ $item->jenis_kelamin }}</td>
+                                        <td>{{ $item->jabatan }}</td>
                                         <td>{{ $item->alamat }}</td>
                                         <td>
                                             <div class="flex gap-2">
@@ -105,8 +106,7 @@
                                                     Edit</button>
 
                                                 <form id="delete-user-{{ $item->id }}"
-                                                    action="{{ route('admin.customer.delete', $item->id) }}"
-                                                    method="POST">
+                                                    action="{{ route('admin.pegawai.delete', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
 
@@ -130,7 +130,7 @@
                                                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                             </form>
                                             <h3 class="text-lg font-bold">Edit {{ $title }}</h3>
-                                            <form method="post" action="{{ route('admin.customer.update', $item->id) }}"
+                                            <form method="post" action="{{ route('admin.pegawai.update', $item->id) }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 @method('put')
@@ -164,15 +164,14 @@
                                                 <label class="form-control w-full mt-2">
                                                     <label class="form-control w-full mt-2">
                                                         <div class="label">
-                                                            <span class="label-text">Jenis Kelamin</span>
+                                                            <span class="label-text">Jabatan</span>
                                                         </div>
-                                                        <select name="jk" id=""
+                                                        <select name="jabatan" id=""
                                                             class="input input bordered input-success  w-full " required>
-                                                            <option>{{ $item->jenis_kelamin }}</option>
-                                                            <option value="">-- Pilih Jenis Kelamin --
-                                                            </option>
-                                                            <option>Laki-laki</option>
-                                                            <option>Perempuan</option>
+                                                            <option>{{ $item->jabatan }}</option>
+                                                            @foreach ($jabatan as $a)
+                                                                <option>{{ $a->jabatan }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </label>
 
