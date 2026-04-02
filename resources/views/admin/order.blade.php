@@ -74,6 +74,35 @@
                             </label>
                         </div>
 
+                        <div>
+                            <label class="form-control w-full mt-2">
+                                <div class="label">
+                                    <span class="label-text">QTY</span>
+                                </div>
+                                <input type="number" name="nama" placeholder=""
+                                    class="input input-bordered input-success w-full" required />
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="form-control w-full mt-2">
+                                <div class="label">
+                                    <span class="label-text">Total Harga</span>
+                                </div>
+                                <input type="text" name="nama" placeholder=""
+                                    class="input input-bordered input-success w-full" required />
+                            </label>
+                        </div>
+
+                        <div class="mt-3">
+                            <button class="btn btn-success w-full"><i class="fas fa-add"></i>SUBMIT</button>
+                        </div>
+
+                        <div class="mt-3">
+                            <a href="" class="btn btn-dark w-full"><i class="fa-solid fa-rotate-right"></i>
+                                REFRESH</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
