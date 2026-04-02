@@ -5,11 +5,11 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class OrderController extends Controller
 {
     function index()
     {
-        $title = 'Dashboard';
-        return view('admin/index', compact('title'));
+        $title = 'Order';
+        return view('admin/order', compact('title'));
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\JabatanController;
 use App\Http\Controllers\admin\JasaDesainController;
 use App\Http\Controllers\admin\JenisBahanController;
 use App\Http\Controllers\admin\KurirController;
+use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\PegawaiController;
 use App\Models\Kurir;
 use Illuminate\Support\Facades\Route;
@@ -51,3 +52,8 @@ Route::get('/kurir', [KurirController::class, 'index'])->name('admin.kurir');
 Route::post('/kurir', [KurirController::class, 'store'])->name('admin.kurir.store');
 Route::put('/kurir/{id}', [KurirController::class, 'update'])->name('admin.kurir.update');
 Route::delete('/kurir/{id}', [KurirController::class, 'delete'])->name('admin.kurir.delete');
+
+Route::get('/order', [OrderController::class, 'index'])->name('admin.order');
+Route::post('/order', [OrderController::class, 'store'])->name('admin.order.store');
+Route::put('/order/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+Route::delete('/order/{id}', [OrderController::class, 'delete'])->name('admin.order.delete');
