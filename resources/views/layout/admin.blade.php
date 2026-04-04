@@ -220,6 +220,44 @@
         }
     </script>
 
+    <script>
+        $("#hitungan").change(function() {
+            var val = $(this).val();
+            if (val == 'Per meter') {
+                $("#formhitung").show();
+            } else {
+                $("#formhitung").hide();
+            }
+
+        });
+
+        $("#qty, #lebar, #tinggi, #qty").on("keyup change", function() {
+            var qty = $("#qty").val();
+            var hitungan = $("#hitungan").val();
+            if (hitungan == 'Per meter') {
+                var harga = Number($("#harga").val());
+                var lebar = Number($("#lebar").val());
+                var tinggi = Number($("#tinggi").val());
+                var hasil = lebar * tinggi;
+                var total = hasil * harga;
+                var totalharga = total * qty;
+                console.log(harga);
+                let formatted = totalharga.toLocaleString('id-ID', {
+                    minimumFractionDigits: 0
+                });
+                $("#totalharga").val(formatted);
+            } else {
+                var harga = Number($("#harga").val());
+                var totalharga = harga * qty;
+                let formatted = totalharga.toLocaleString('id-ID', {
+                    minimumFractionDigits: 0
+                });
+                $("#totalharga").val(formatted);
+            }
+
+        })
+    </script>
+
 
 </body>
 

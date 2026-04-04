@@ -14,7 +14,6 @@
                         <h2 class="card-title">{{ $title }}</h2>
 
                         <div class="flex gap-2">
-
                             <button class="btn btn-success" onclick="my_modal_3.showModal()"><i class="fas fa-plus"></i>
                                 Tambah
                                 data</button>
