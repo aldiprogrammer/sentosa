@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\JenisBahanController;
 use App\Http\Controllers\admin\KurirController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\PegawaiController;
+use App\Http\Controllers\admin\SatuanStokController;
 use App\Models\Kurir;
 use Illuminate\Support\Facades\Route;
 
@@ -57,3 +58,8 @@ Route::get('/order', [OrderController::class, 'index'])->name('admin.order');
 Route::post('/order', [OrderController::class, 'store'])->name('admin.order.store');
 Route::put('/order/{id}', [OrderController::class, 'update'])->name('admin.order.update');
 Route::delete('/order/{id}', [OrderController::class, 'delete'])->name('admin.order.delete');
+
+Route::get('/satuanstok', [SatuanStokController::class, 'index'])->name('admin.satuanstok');
+Route::post('/satuanstok', [SatuanStokController::class, 'store'])->name('admin.satuanstok.store');
+Route::put('/satuanstok/{id}', [SatuanStokController::class, 'update'])->name('admin.satuanstok.update');
+Route::delete('/satuanstok/{id}', [SatuanStokController::class, 'delete'])->name('admin.satuanstok.delete');

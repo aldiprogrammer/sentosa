@@ -14,7 +14,13 @@ class Bahan extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function jenisbahan()    {
+    public function jenisbahan()
+    {
         return $this->belongsTo(Jenisbahan::class, 'id_kategori_bahan');
+    }
+
+    public function satuanstok()
+    {
+        return $this->belongsTo(Satuanstok::class, 'satuan_stok');
     }
 }

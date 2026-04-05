@@ -9,19 +9,19 @@ use Illuminate\Http\Request;
 class JenisBahanController extends Controller
 {
     function index(){
-        
+
         $title = 'Data Jenis Bahan';
         $jenisbahan = Jenisbahan::all();
         return view('admin/jenisbahan', compact('title', 'jenisbahan'));
-        
-    }
 
+    }
+ 
     function store(Request $request){
         $js = new Jenisbahan();
         $js->jenis_bahan = $request->jenis_bahan;
         $js->save();
         return redirect()->back()->with('success', 'Data berhasil ditambah');
-        
+
     }
 
     function update(Request $request, $id){

@@ -27,42 +27,130 @@
                                         enctype="multipart/form-data">
                                         @csrf
 
-                                        <label class="form-control w-full mt-2">
-                                            <div class="label">
-                                                <span class="label-text">Tanggal Masuk</span>
-                                            </div>
-                                            <input type="date" name="tgl_masuk" placeholder=""
-                                                class="input input-bordered input-success w-full" required />
-                                        </label>
+                                        <div class="grid sm:grid-cols-2 gap-2">
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Tanggal Masuk</span>
+                                                </div>
+                                                <input type="date" name="tgl_masuk" placeholder=""
+                                                    class="input input-bordered input-success w-full" required />
+                                            </label>
 
-                                        <label class="form-control w-full mt-2">
-                                            <div class="label">
-                                                <span class="label-text">Nama Bahan</span>
-                                            </div>
-                                            <input type="text" name="nama_bahan" placeholder=""
-                                                class="input input-bordered input-success w-full" required />
-                                        </label>
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Kode</span>
+                                                </div>
+                                                <input type="text" name="kode" placeholder=""
+                                                    class="input input-bordered input-success w-full" required />
+                                            </label>
 
-                                        <label class="form-control w-full mt-2">
-                                            <div class="label">
-                                                <span class="label-text">Jumlah Bahan</span>
-                                            </div>
-                                            <input type="number" name="jml_bahan" placeholder=""
-                                                class="input input-bordered input-success w-full" required />
-                                        </label>
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Nama Bahan</span>
+                                                </div>
+                                                <input type="text" name="nama_bahan" placeholder=""
+                                                    class="input input-bordered input-success w-full" required />
+                                            </label>
 
-                                        <label class="form-control w-full mt-2">
-                                            <div class="label">
-                                                <span class="label-text">Jenis Bahan</span>
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Jumlah Bahan</span>
+                                                </div>
+                                                <input type="number" name="jml_bahan" placeholder=""
+                                                    class="input input-bordered input-success w-full" required />
+                                            </label>
+
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Kategori Bahan</span>
+                                                </div>
+                                                <select name="jenis_bahan" id=""
+                                                    class="input input-bordered input-success" required>
+                                                    <option value="">-- Pilih Jenis Bahan --</option>
+                                                    @foreach ($jenis as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->jenis_bahan }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </label>
+
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Satuan Bahan</span>
+                                                </div>
+                                                <select name="satuan_bahan" id=""
+                                                    class="input input-bordered input-success" required>
+                                                    <option value="">-- Pilih Satuan Bahan --</option>
+                                                    @foreach ($satuan as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->nama_satuan }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </label>
+
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Kelompok</span>
+                                                </div>
+                                                <select name="kelompok" id=""
+                                                    class="input input-bordered input-success">
+                                                    <option></option>
+                                                    @foreach ($bahan as $item)
+                                                        <option value="{{ $item->kode }}">{{ $item->kode }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </label>
+
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Konversi</span>
+                                                </div>
+                                                <input type="number" class="input input-bordered input-success"
+                                                    name="konversi" required value="0">
+                                            </label>
+
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Mode Cetak</span>
+                                                </div>
+                                                <input type="number" class="input input-bordered input-success"
+                                                    name="mode_cetak" required value="0">
+                                            </label>
+
+
+                                            <label class="form-control w-full mt-2">
+                                                <div class="label">
+                                                    <span class="label-text">Klik</span>
+                                                </div>
+                                                <input type="number" class="input input-bordered input-success"
+                                                    name="klik" required value="0">
+                                            </label>
+
+                                            <div class="flex">
+                                                <label class="form-control mt-2">
+                                                    <div class="label">
+                                                        <span class="label-text">Luas</span>
+                                                    </div>
+                                                    <input type="checkbox" class="checkbox" name="luas" />
+                                                </label>
+
+                                                <label class="form-control mt-2">
+                                                    <div class="label">
+                                                        <span class="label-text">Qty</span>
+                                                    </div>
+                                                    <input type="checkbox" class="checkbox" name="qty" />
+                                                </label>
                                             </div>
-                                            <select name="jenis_bahan" id=""
-                                                class="input input-bordered input-success" required>
-                                                <option value="">-- Pilih Jenis Bahan --</option>
-                                                @foreach ($jenis as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->jenis_bahan }}</option>
-                                                @endforeach
-                                            </select>
-                                        </label>
+
+
+
+                                        </div>
+
+
+
+
+
 
 
 
@@ -84,9 +172,15 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Tanggal Masuk</th>
+                                    <th>Kode</th>
                                     <th>Nama Bahan</th>
                                     <th>Jumlah Stok</th>
-                                    <th>Jenis Bahan</th>
+                                    <th>Kategori Bahan</th>
+                                    <th>Satuan Stok</th>
+                                    <th>Kelompok</th>
+                                    <th>Konversi</th>
+                                    <th>Mod Label</th>
+                                    <th>Klik</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
@@ -96,9 +190,15 @@
                                     <tr>
                                         <td>{{ $i + 1 }}</td>
                                         <td>{{ $item->tgl_masuk }}</td>
+                                        <td>{{ $item->kode }}</td>
                                         <td>{{ $item->nama_bahan }}</td>
                                         <td>{{ $item->jumlah_bahan }}</td>
                                         <td>{{ $item->jenisbahan->jenis_bahan }}</td>
+                                        <td>{{ $item->satuanstok->nama_satuan }}</td>
+                                        <td>{{ $item->kelompok }}</td>
+                                        <td>{{ $item->konversi }}</td>
+                                        <td>{{ $item->mode_cetak }}</td>
+                                        <td>{{ $item->klik }}</td>
                                         <td>
                                             <div class="flex gap-2">
                                                 <button class="btn btn-primary btn-sm"
@@ -135,48 +235,136 @@
                                                 @csrf
                                                 @method('put')
 
-                                                <label class="form-control w-full mt-2">
-                                                    <div class="label">
-                                                        <span class="label-text">Tanggal Masuk</span>
-                                                    </div>
-                                                    <input type="date" name="tgl_masuk" placeholder=""
-                                                        class="input input-bordered input-success w-full"
-                                                        value="{{ $item->tgl_masuk }}" required />
-                                                </label>
+                                                <div class="grid sm:grid-cols-2 gap-2">
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Tanggal Masuk</span>
+                                                        </div>
+                                                        <input type="date" name="tgl_masuk" placeholder=""
+                                                            value="{{ $item->tgl_masuk }}"
+                                                            class="input input-bordered input-success w-full" required />
+                                                    </label>
 
-                                                <label class="form-control w-full mt-2">
-                                                    <div class="label">
-                                                        <span class="label-text">Nama Bahan</span>
-                                                    </div>
-                                                    <input type="text" name="nama_bahan" placeholder=""
-                                                        class="input input-bordered input-success w-full"
-                                                        value="{{ $item->nama_bahan }}" required />
-                                                </label>
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Kode</span>
+                                                        </div>
+                                                        <input type="text" name="kode" placeholder=""
+                                                            class="input input-bordered input-success w-full" required
+                                                            value="{{ $item->kode }}" />
+                                                    </label>
 
-                                                <label class="form-control w-full mt-2">
-                                                    <div class="label">
-                                                        <span class="label-text">Jumlah Bahan</span>
-                                                    </div>
-                                                    <input type="number" name="jml_bahan" placeholder=""
-                                                        class="input input-bordered input-success w-full"
-                                                        value="{{ $item->jumlah_bahan }}" required />
-                                                </label>
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Nama Bahan</span>
+                                                        </div>
+                                                        <input type="text" name="nama_bahan" placeholder=""
+                                                            class="input input-bordered input-success w-full" required
+                                                            value="{{ $item->nama_bahan }}" />
+                                                    </label>
 
-                                                <label class="form-control w-full mt-2">
-                                                    <div class="label">
-                                                        <span class="label-text">Jenis Bahan</span>
-                                                    </div>
-                                                    <select name="jenis_bahan" id=""
-                                                        class="input input-bordered input-success" required>
-                                                        <option value="{{ $item->id_kategori_bahan }}">
-                                                            {{ $item->jenisbahan->jenis_bahan }}</option>
-                                                        @foreach ($jenis as $a)
-                                                            <option value="{{ $a->id }}">{{ $a->jenis_bahan }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </label>
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Jumlah Bahan</span>
+                                                        </div>
+                                                        <input type="number" name="jml_bahan" placeholder=""
+                                                            class="input input-bordered input-success w-full" required
+                                                            value="{{ $item->jumlah_bahan }}" />
+                                                    </label>
 
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Kategori Bahan</span>
+                                                        </div>
+                                                        <select name="jenis_bahan" id=""
+                                                            class="input input-bordered input-success" required>
+                                                            <option value="{{ $item->id_kategori_bahan }}">
+                                                                {{ $item->jenisbahan->jenis_bahan }}</option>
+                                                            @foreach ($jenis as $c)
+                                                                <option value="{{ $c->id }}">
+                                                                    {{ $c->jenis_bahan }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </label>
+
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Satuan Bahan</span>
+                                                        </div>
+                                                        <select name="satuan_bahan" id=""
+                                                            class="input input-bordered input-success" required>
+                                                            <option value="{{ $item->satuan_stok }}">
+                                                                {{ $item->satuanstok->nama_satuan }}</option>
+                                                            @foreach ($satuan as $b)
+                                                                <option value="{{ $b->id }}">
+                                                                    {{ $b->nama_satuan }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </label>
+
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Kelompok</span>
+                                                        </div>
+                                                        <select name="kelompok" id=""
+                                                            class="input input-bordered input-success">
+                                                            <option>{{ $item->kelompok }}</option>
+                                                            @foreach ($bahan as $a)
+                                                                <option value="{{ $a->kode }}">{{ $a->kode }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </label>
+
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Konversi</span>
+                                                        </div>
+                                                        <input type="number" class="input input-bordered input-success"
+                                                            name="konversi" required value="{{ $item->konversi }}">
+                                                    </label>
+
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Mode Cetak</span>
+                                                        </div>
+                                                        <input type="number" class="input input-bordered input-success"
+                                                            name="mode_cetak" required value="0"
+                                                            value="{{ $item->mode_cetak }}">
+                                                    </label>
+
+
+                                                    <label class="form-control w-full mt-2">
+                                                        <div class="label">
+                                                            <span class="label-text">Klik</span>
+                                                        </div>
+                                                        <input type="number" class="input input-bordered input-success"
+                                                            name="klik" required value="{{ $item->klik }}">
+                                                    </label>
+
+                                                    <div class="flex">
+                                                        <label class="form-control mt-2">
+                                                            <div class="label">
+                                                                <span class="label-text">Luas</span>
+                                                            </div>
+                                                            <input type="checkbox" class="checkbox"
+                                                                @checked($item->luas == 'on') name="luas" />
+                                                        </label>
+
+                                                        <label class="form-control mt-2">
+                                                            <div class="label">
+                                                                <span class="label-text">Qty</span>
+                                                            </div>
+                                                            <input type="checkbox" class="checkbox" name="qty"
+                                                                @checked($item->qty == 'on') />
+                                                        </label>
+                                                    </div>
+
+
+
+                                                </div>
 
 
                                                 <div class="mt-4">
